@@ -1,0 +1,12 @@
+{
+  "name": "6-month-ai-developer-roadmap",
+  "version": "1.0.0",
+  "description": "6 Month AI Developer Roadmap",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d 'Month 1/Week 4/Password Generator'"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}
