@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Password Generator</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-900 text-slate-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-slate-800 p-8 rounded-xl shadow-2xl w-full max-w-md border border-slate-700">
+        <h1 class="text-2xl font-bold mb-6 text-center text-indigo-400">Password Generator</h1>
+
+        <!-- Password Display Box -->
+        <div class="flex items-center bg-slate-900 p-3 rounded-lg mb-6 border border-slate-700">
+            <span id="passwordOutput"
+                class="font-mono text-lg tracking-wider text-emerald-400 truncate flex-1 select-all">Click
+                Generate</span>
+            <button id="copyBtn"
+                class="ml-2 bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded text-sm font-medium transition">Copy</button>
+        </div>
+
+        <!-- Controls Form -->
+        <div class="space-y-4">
+            <div>
+                <label for="lengthRange" class="block text-sm font-medium text-slate-300 mb-1">
+                    Length: <span id="lengthVal" class="font-bold text-indigo-400">12</span>
+                </label>
+                <input type="range" id="lengthRange" min="4" max="32" value="12"
+                    class="w-full accent-indigo-500 cursor-pointer">
+            </div>
+
+            <div class="flex items-center justify-between">
+                <label for="includeNumbers" class="text-sm font-medium text-slate-300 cursor-pointer">Include Numbers
+                    (0-9)</label>
+                <input type="checkbox" id="includeNumbers" checked
+                    class="w-4 h-4 accent-indigo-500 rounded cursor-pointer">
+            </div>
+
+            <div class="flex items-center justify-between">
+                <label for="includeSymbols" class="text-sm font-medium text-slate-300 cursor-pointer">Include Symbols
+                    (!@#$)</label>
+                <input type="checkbox" id="includeSymbols" checked
+                    class="w-4 h-4 accent-indigo-500 rounded cursor-pointer">
+            </div>
+
+            <button id="generateBtn"
+                class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2.5 rounded-lg transition shadow-lg mt-4">
+                Generate Password
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const lengthRange = document.getElementById('lengthRange');
+        const lengthVal = document.getElementById('lengthVal');
+        const includeNumbers = document.getElementById('includeNumbers');
+        const includeSymbols = document.getElementById('includeSymbols');
+        const passwordOutput = document.getElementById('passwordOutput');
+        const generateBtn = document.getElementById('generateBtn');
+        const copyBtn = document.getElementById('copyBtn');
+
+        // Update slider number display live
+        lengthRange.addEventListener('input', () => {
+            lengthVal.textContent = lengthRange.value;
+        });
+
+        function generatePassword() {
+            const length = parseInt(lengthRange.value);
+            const lowercase = "abcdefghijklmnopqrstuvwxyz";
+            const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const numbers = "0123456789";
+            const symbols = "!@#$%^&*()_+-=[]{}|;:,.<>?";
+
+            let charPool = lowercase + uppercase;
+            if (includeNumbers.checked) charPool += numbers;
+            if (includeSymbols.checked) charPool += symbols;
+
+            let password = "";
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charPool.length);
+                password += charPool[randomIndex];
+            }
+
+            passwordOutput.textContent = password;
+            passwordOutput.classList.remove('text-slate-400');
+            passwordOutput.classList.add('text-emerald-400');
+        }
+
+        generateBtn.addEventListener('click', generatePassword);
+
+        // Copy to clipboard functionality
+        copyBtn.addEventListener('click', () => {
+            const text = passwordOutput.textContent;
+            if (text === "Click Generate" || !text) return;
+            navigator.clipboard.writeText(text).then(() => {
+                copyBtn.textContent = "Copied!";
+                setTimeout(() => { copyBtn.textContent = "Copy"; }, 2000);
+            });
+        });
+
+        // Generate one on initial load
+        generatePassword();
+    </script>
+</body>
+
+</html>
