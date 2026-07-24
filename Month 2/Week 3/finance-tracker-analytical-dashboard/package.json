@@ -1,7 +1,7 @@
 {
-  "name": "finance-tracker-frontend",
+  "name": "finance-tracker-analytical-dashboard",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,7 @@
     "lucide-react": "^0.469.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "recharts": "^3.10.0"
+    "recharts": "^2.13.3"
   },
   "devDependencies": {
     "@types/react": "^18.3.18",
