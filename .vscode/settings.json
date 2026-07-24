@@ -1,0 +1,13 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/Month 2/Week 1/finance-tracker-backend/venv/bin/python",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/Month 1/Week 2/amortization-calculator",
+    "${workspaceFolder}/Month 2/Week 1/finance-tracker-backend",
+    "${workspaceFolder}/Month 2/Week 1/finance-tracker-backend/venv/lib/python3.10/site-packages"
+  ],
+  "pyrefly.analysis.extraPaths": [
+    "${workspaceFolder}/Month 1/Week 2/amortization-calculator",
+    "${workspaceFolder}/Month 2/Week 1/finance-tracker-backend",
+    "${workspaceFolder}/Month 2/Week 1/finance-tracker-backend/venv/lib/python3.10/site-packages"
+  ]
+}

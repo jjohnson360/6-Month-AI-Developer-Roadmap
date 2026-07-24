@@ -1,0 +1,7 @@
+{
+  "extraPaths": [
+    "Month 1/Week 2/amortization-calculator",
+    "Month 2/Week 1/finance-tracker-backend",
+    "Month 2/Week 1/finance-tracker-backend/venv/lib/python3.10/site-packages"
+  ]
+}
