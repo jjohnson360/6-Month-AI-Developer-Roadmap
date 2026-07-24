@@ -1,0 +1,18 @@
+# Amortization Calculator
+
+A command-line financial interest and amortization calculator built entirely in Python without external dependencies. This project serves as a hands-on exercise for mastering AI-assisted development workflows, iterative prompt engineering, and code debugging.
+
+## Features
+* **Pure Python Implementation:** Relies solely on native Python libraries for clean portability.
+* **Robust Input Validation:** Catches non-numeric entries, negative values, and zero-term edge cases.
+* **Zero-Interest Handling:** Gracefully handles 0% interest rate loans without causing division-by-zero errors.
+* **Precision Rounding & Drift Protection:** Automatically corrects for floating-point rounding drift on the final payment cycle.
+
+## Requirements
+* Python 3.8 or higher.
+
+## Usage
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/your-username/amortization-calculator.git](https://github.com/your-username/amortization-calculator.git)
+   cd amortization-calculator
