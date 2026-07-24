@@ -1,34 +1,51 @@
-# Finance Tracker Backend (FastAPI)
+# Finance Tracker Backend (FastAPI + PostgreSQL + SQLAlchemy)
 
-A RESTful API built with FastAPI and Pydantic for managing income and expense transactions.
+A RESTful API built with **FastAPI**, **Pydantic v2**, and **SQLAlchemy ORM** for managing financial transactions (income & expenses) with persistent database storage.
+
+---
+
+## 🛠️ Features & Architecture
+
+- **Database Persistence**: Powered by PostgreSQL via SQLAlchemy ORM with automatic SQLite fallback for offline development.
+- **RESTful Endpoints**: Full CRUD support for creating, retrieving, updating, and deleting transactions.
+- **Data Validation**: Strict type-checking and schema validation using Pydantic v2.
+- **Package Management**: Powered by Astral's **`uv`** package manager.
+- **Automated Testing**: Complete unit test suite using `pytest` and in-memory test database fixtures.
+
+---
 
 ## 🚀 Setup & Environment
 
-This project uses **`uv`** for fast dependency management and virtual environments.
-
-### 1. Ensure `uv` is installed and PATH updated
+### 1. Environment & Dependencies
+Ensure `uv` is installed and sync all required packages into your virtual environment:
 ```bash
 export PATH="$HOME/.local/bin:$PATH"
+uv pip install --python venv -r requirements.txt
 ```
 
-### 2. Install / Sync Dependencies
+### 2. Configure Database (Optional)
+By default, the application connects to PostgreSQL:
 ```bash
-uv pip install --python venv -r requirements.txt
+postgresql://postgres:password@localhost/financetracker
+```
+You can override the database URL using an environment variable:
+```bash
+export DATABASE_URL="postgresql://username:password@localhost:5432/your_db"
 ```
 
 ### 3. Run the Development Server
 ```bash
 uvicorn main:app --reload
 ```
-Once running, explore the interactive API documentation at:
-- Swagger UI: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-- ReDoc: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
+Once started, explore the interactive documentation:
+- **Swagger UI**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+- **ReDoc**: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
 
 ---
 
-## 🧪 Testing
+## 🧪 Running Tests
 
-Run the automated suite using `pytest`:
+Run the unit test suite using `pytest`:
 ```bash
 ./venv/bin/pytest
 ```
@@ -39,7 +56,9 @@ Run the automated suite using `pytest`:
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `GET` | `/` | API Welcome message |
-| `GET` | `/transactions` | List all transactions |
+| `GET` | `/` | API Health & Welcome message |
+| `GET` | `/transactions` | Retrieve all transactions |
+| `GET` | `/transactions/{id}` | Retrieve a specific transaction by ID |
 | `POST` | `/transactions` | Create a new transaction |
+| `PUT` | `/transactions/{id}` | Update an existing transaction |
 | `DELETE` | `/transactions/{id}` | Delete a transaction by ID |
