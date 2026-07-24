@@ -1,4 +1,3 @@
-
 # Amortization Calculator
 
 A command-line financial interest and amortization calculator built entirely in Python without external dependencies. This project serves as a hands-on exercise for mastering AI-assisted development workflows, iterative prompt engineering, and code debugging.
