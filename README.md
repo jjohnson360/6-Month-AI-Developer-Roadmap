@@ -26,6 +26,7 @@
 ![License](https://img.shields.io/badge/License-MIT-c9a15a?style=flat-square&labelColor=17171a)
 ![Build](https://img.shields.io/badge/build-passing-c9a15a?style=flat-square&labelColor=17171a)
 ![Coverage](https://img.shields.io/badge/coverage-92%25-c9a15a?style=flat-square&labelColor=17171a)
+[![Live Demo](https://img.shields.io/badge/demo-live-c9a15a?style=flat-square&logo=vercel&logoColor=white&labelColor=17171a)](https://6-month-ai-developer-roadmap.vercel.app/)
 
 </div>
 
@@ -152,7 +153,7 @@ Every month introduces a new technical domain. Every week ships a concrete proje
 | **Database** | PostgreSQL (production) · SQLite (development) |
 | **Frontend** | React 18, Vite, Tailwind CSS, Recharts, Lucide Icons |
 | **Design System** | ff360 Labs — Deep Black · Matte Charcoal · Metallic Gold |
-| **Deployment** | Docker Compose · Render-ready `Procfile` · Environment variable driven |
+| **Deployment** | Vercel (frontend + backend) · Docker Compose (local) · Environment variable driven |
 | **Testing** | Pytest · HTTPX async client |
 
 ### Architecture
@@ -193,11 +194,11 @@ Every month introduces a new technical domain. Every week ships a concrete proje
 
 | Environment | URL | Status |
 |-------------|-----|:------:|
-| 🌐 Frontend (Render) | *link coming soon* | 🔜 Deploying |
-| ⚙️ Backend API (Render) | *link coming soon* | 🔜 Deploying |
-| 📖 API Swagger Docs | *`{backend-url}/docs`* | 🔜 Deploying |
+| 🌐 Frontend (Vercel) | [6-month-ai-developer-roadmap.vercel.app](https://6-month-ai-developer-roadmap.vercel.app/) | ✅ Live |
+| ⚙️ Backend API (Vercel) | [financetracker3-g4klg0wng-jjohnson360s-projects.vercel.app](https://financetracker3-g4klg0wng-jjohnson360s-projects.vercel.app/) | ✅ Live |
+| 📖 API Swagger Docs | [financetracker3-g4klg0wng-jjohnson360s-projects.vercel.app/docs](https://financetracker3-g4klg0wng-jjohnson360s-projects.vercel.app/docs) | ✅ Live |
 
-> Deployment to Render is in progress. Live links will be updated here once the services are live.
+> Both frontend and backend are deployed on Vercel.
 
 ### Running Locally
 
