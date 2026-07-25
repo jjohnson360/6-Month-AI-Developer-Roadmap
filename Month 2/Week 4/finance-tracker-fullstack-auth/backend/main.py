@@ -80,11 +80,11 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(title="Finance Tracker API with JWT Auth", version="2.0")
 
 # --- CORS Middleware ---
-# Allows the frontend (local or production) to call the API.
+# Allows the frontend (local or production Vercel) to call the API.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
