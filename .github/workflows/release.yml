@@ -1,0 +1,52 @@
+name: Release Tauri App
+
+on:
+  push:
+    tags:
+      - 'v*' # Triggers workflow on tag push (e.g. v0.1.0)
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [macos-latest, windows-latest]
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: './Month 2/Week 4/finance-tracker-fullstack-auth/frontend/package-lock.json'
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install system dependencies (macOS only)
+        if: matrix.platform == 'macos-latest'
+        run: |
+          echo "System dependencies for macOS are installed by default."
+
+      - name: Install npm dependencies
+        run: |
+          cd "Month 2/Week 4/finance-tracker-fullstack-auth/frontend"
+          npm install
+
+      - name: Build Tauri App
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: 'Release ${{ github.ref_name }}'
+          releaseBody: 'Standalone desktop applications for Finance Tracker.'
+          releaseDraft: true
+          prerelease: false
+          projectPath: './Month 2/Week 4/finance-tracker-fullstack-auth/frontend'
