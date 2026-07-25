@@ -8,6 +8,8 @@
 
 *Engineered under the ff360 Labs venture — building in public, one milestone at a time.*
 
+**"Always Building Something New"**
+
 <br>
 
 [![Month 1](https://img.shields.io/badge/Month%201-Python%20Fundamentals-c9a15a?style=for-the-badge&logo=python&logoColor=white&labelColor=0a0a0b)](Month%201/)
@@ -299,7 +301,7 @@ Planned curriculum:
 
 **ff360 Labs** · [@jjohnson360](https://github.com/jjohnson360)
 
-*Building in public. Shipping real projects. No shortcuts.*
+*Always Building Something New.*
 
 <br>
 
