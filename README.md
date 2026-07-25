@@ -153,7 +153,7 @@ Every month introduces a new technical domain. Every week ships a concrete proje
 | **Database** | PostgreSQL (production) · SQLite (development) |
 | **Frontend** | React 18, Vite, Tailwind CSS, Recharts, Lucide Icons |
 | **Design System** | ff360 Labs — Deep Black · Matte Charcoal · Metallic Gold |
-| **Deployment** | Vercel (frontend + backend) · Docker Compose (local) · Environment variable driven |
+| **Deployment** | Vercel (frontend) · Render (backend) · Docker Compose (local) · Environment variable driven |
 | **Testing** | Pytest · HTTPX async client |
 
 ### Architecture
@@ -195,10 +195,10 @@ Every month introduces a new technical domain. Every week ships a concrete proje
 | Environment | URL | Status |
 |-------------|-----|:------:|
 | 🌐 Frontend (Vercel) | [6-month-ai-developer-roadmap.vercel.app](https://6-month-ai-developer-roadmap.vercel.app/) | ✅ Live |
-| ⚙️ Backend API (Vercel) | [financetracker3-g4klg0wng-jjohnson360s-projects.vercel.app](https://financetracker3-g4klg0wng-jjohnson360s-projects.vercel.app/) | ✅ Live |
-| 📖 API Swagger Docs | [financetracker3-g4klg0wng-jjohnson360s-projects.vercel.app/docs](https://financetracker3-g4klg0wng-jjohnson360s-projects.vercel.app/docs) | ✅ Live |
+| ⚙️ Backend API (Render) | [six-month-ai-developer-roadmap.onrender.com](https://six-month-ai-developer-roadmap.onrender.com) | ✅ Live |
+| 📖 API Swagger Docs | [six-month-ai-developer-roadmap.onrender.com/docs](https://six-month-ai-developer-roadmap.onrender.com/docs) | ✅ Live |
 
-> Both frontend and backend are deployed on Vercel.
+> Frontend deployed on Vercel, backend deployed on Render.
 
 ### Running Locally
 
