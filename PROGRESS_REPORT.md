@@ -44,6 +44,11 @@ When you return, we will begin **Month 3**!
     - `frontend/`: React + Tailwind CSS + Recharts + Auth Sign In/Up Screen.
     - `docker-compose.yml`: Multi-container orchestration.
 
+  **Authentication Features**  
+  - **Registration:** Users can create an account by providing email, password, and optional profile details. Passwords are hashed with bcrypt and stored securely in PostgreSQL. Email verification is sent via SendGrid (configurable).  
+  - **Login:** Authenticated via JWT bearer tokens. Users submit email and password to `/auth/login`, receive an access token (short‑lived) and refresh token. Tokens are stored in HttpOnly cookies on the client.  
+  - **Password Reset:** (planned) Users can request a password reset link via email.
+
 ---
 
 ## ⚡ How to Resume / Run the Full-Stack App

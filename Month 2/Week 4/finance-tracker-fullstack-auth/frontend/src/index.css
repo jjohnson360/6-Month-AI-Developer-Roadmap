@@ -1,9 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 antialiased min-h-screen font-sans;
+    background-color: #0a0a0b;
+    color: #f1f1f1;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
   }
+
+  /* Scrollbar — dark minimal */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: #0a0a0b; }
+  ::-webkit-scrollbar-thumb { background: #2a2a2e; border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: #c9a15a44; }
+}
+
+@layer utilities {
+  /* ff360 reusable glass card surface */
+  .card-glass {
+    background: rgba(23, 23, 26, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 8px 32px rgba(0,0,0,0.5);
+  }
+
+  /* Gold glow for primary CTA buttons */
+  .btn-gold {
+    background: linear-gradient(135deg, #c9a15a 0%, #a07840 100%);
+    color: #0a0a0b;
+    font-weight: 700;
+    box-shadow: 0 4px 20px rgba(201,161,90,0.25);
+    transition: all 0.2s ease;
+  }
+  .btn-gold:hover {
+    background: linear-gradient(135deg, #dbb56e 0%, #b88848 100%);
+    box-shadow: 0 4px 28px rgba(201,161,90,0.40);
+    transform: translateY(-1px);
+  }
+  .btn-gold:disabled {
+    opacity: 0.5;
+    transform: none;
+    cursor: not-allowed;
+  }
+
+  /* Gold text */
+  .text-gold { color: #c9a15a; }
+  .border-gold { border-color: rgba(201, 161, 90, 0.35); }
 }

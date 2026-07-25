@@ -1,8 +1,9 @@
 import os
-import time
+import warnings
 from datetime import datetime, timedelta
 from typing import List, Optional
 from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel, ConfigDict, EmailStr
 import jwt
@@ -13,18 +14,29 @@ from sqlalchemy.exc import OperationalError
 
 # Secret Key & JWT Config
 SECRET_KEY = os.getenv("SECRET_KEY", "super-secret-jwt-key-change-in-production-2026")
+if SECRET_KEY == "super-secret-jwt-key-change-in-production-2026":
+    warnings.warn("SECRET_KEY is using the default insecure value. Set a strong SECRET_KEY env var in production!", stacklevel=1)
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 24 Hours
 
-# Database URL Configuration (PostgreSQL with SQLite fallback)
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:password@localhost/financetracker")
+# CORS — comma-separated list of allowed origins, e.g. "https://myapp.onrender.com"
+ALLOWED_ORIGINS_RAW = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000")
+ALLOWED_ORIGINS = [o.strip() for o in ALLOWED_ORIGINS_RAW.split(",") if o.strip()]
 
-try:
+# Database URL Configuration
+# In production: set DATABASE_URL env var to your PostgreSQL connection string.
+# Locally: falls back to SQLite only when DATABASE_URL is NOT explicitly set.
+_explicit_db_url = os.getenv("DATABASE_URL")  # None if not set at all
+DATABASE_URL = _explicit_db_url or "sqlite:///./finance_auth.db"
+
+if _explicit_db_url:
+    # Production: use the explicitly provided URL — no silent fallback
+    # Render sets DATABASE_URL as postgres://, SQLAlchemy needs postgresql://
+    if DATABASE_URL.startswith("postgres://"):
+        DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
     engine = create_engine(DATABASE_URL)
-    with engine.connect() as conn:
-        pass
-except (OperationalError, Exception):
-    DATABASE_URL = "sqlite:///./finance_auth.db"
+else:
+    # Local development: use SQLite
     engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -66,6 +78,16 @@ class TransactionModel(Base):
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Finance Tracker API with JWT Auth", version="2.0")
+
+# --- CORS Middleware ---
+# Allows the frontend (local or production) to call the API.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # --- Pydantic Schemas ---
 

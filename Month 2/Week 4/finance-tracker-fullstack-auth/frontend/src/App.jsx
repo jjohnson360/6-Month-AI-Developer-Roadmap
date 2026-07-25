@@ -35,7 +35,13 @@ import {
   CartesianGrid 
 } from 'recharts';
 
-const API_BASE = '/api';
+
+// In production, VITE_BACKEND_URL is set to e.g. "https://your-api.onrender.com"
+// In local dev it's empty, so we fall back to '/api' (handled by Vite proxy → port 8000)
+const API_BASE = import.meta.env.VITE_BACKEND_URL
+  ? `${import.meta.env.VITE_BACKEND_URL}`
+  : '/api';
+
 
 const CATEGORY_COLORS = {
   'Food': '#F59E0B',
@@ -274,53 +280,56 @@ export default function App() {
   const filteredTransactions = useMemo(() => {
     if (selectedFilter === 'income') return transactions.filter(t => t.type === 'income');
     if (selectedFilter === 'expense') return transactions.filter(t => t.type === 'expense');
-    if (selectedFilter !== 'all') return transactions.filter(t => t.category === selectedFilter);
+  if (selectedFilter !== 'all') return transactions.filter(t => t.category === selectedFilter);
     return transactions;
   }, [transactions, selectedFilter]);
 
   // Render Auth Screen if not logged in
   if (!currentUser) {
     return (
-      <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4 font-sans relative overflow-hidden">
-        {/* Decorative Background Gradients */}
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl"></div>
-
-        <div className="w-full max-w-md bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-3xl p-8 shadow-2xl relative z-10">
+      <div className="min-h-screen flex items-center justify-center p-4" style={{background:'#0a0a0b'}}>
+        <div className="w-full max-w-sm card-glass rounded-2xl p-8">
+          {/* Brand lockup */}
           <div className="text-center mb-8">
-            <div className="w-14 h-14 bg-indigo-600/20 border border-indigo-500/30 rounded-2xl flex items-center justify-center mx-auto mb-4 text-indigo-400">
-              <ShieldCheck className="w-8 h-8" />
+            <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4" style={{background:'rgba(201,161,90,0.1)',border:'1px solid rgba(201,161,90,0.25)'}}>
+              <ShieldCheck className="w-8 h-8 text-gold" />
             </div>
-            <h1 className="text-2xl font-extrabold bg-gradient-to-r from-emerald-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent">
-              Finance Tracker Auth
+            <h1 className="text-2xl font-extrabold bg-clip-text text-transparent" style={{backgroundImage:'linear-gradient(135deg,#c9a15a,#e8c98a,#a07840)'}}>
+              Finance Tracker
             </h1>
-            <p className="text-slate-400 text-xs mt-1">
-              Month 2, Week 4 • Secure JWT Authentication
+            <p className="text-zinc-500 text-xs mt-1 tracking-wide">
+              ff360 Labs · Secure JWT Authentication
             </p>
           </div>
 
-          {/* Auth Toggle Tabs */}
-          <div className="grid grid-cols-2 bg-slate-950 p-1 rounded-xl border border-slate-800 mb-6">
+          {/* Auth toggle tabs */}
+          <div className="grid grid-cols-2 p-1 rounded-xl mb-6" style={{background:'rgba(10,10,11,0.8)',border:'1px solid rgba(255,255,255,0.06)'}}>
             <button
               onClick={() => setAuthMode('login')}
               className={`py-2 text-xs font-semibold rounded-lg transition-all ${
-                authMode === 'login' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'
+                authMode === 'login'
+                  ? 'text-[#0a0a0b] shadow-md'
+                  : 'text-zinc-500 hover:text-zinc-300'
               }`}
+              style={authMode === 'login' ? {background:'linear-gradient(135deg,#c9a15a,#a07840)'} : {}}
             >
               Sign In
             </button>
             <button
               onClick={() => setAuthMode('register')}
               className={`py-2 text-xs font-semibold rounded-lg transition-all ${
-                authMode === 'register' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'
+                authMode === 'register'
+                  ? 'text-[#0a0a0b] shadow-md'
+                  : 'text-zinc-500 hover:text-zinc-300'
               }`}
+              style={authMode === 'register' ? {background:'linear-gradient(135deg,#c9a15a,#a07840)'} : {}}
             >
               Sign Up
             </button>
           </div>
 
           {authError && (
-            <div className="p-3 bg-rose-500/10 border border-rose-500/30 rounded-xl text-rose-300 text-xs mb-4 flex items-center gap-2">
+            <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-300 text-xs mb-4 flex items-center gap-2">
               <AlertCircle className="w-4 h-4 shrink-0" />
               <span>{authError}</span>
             </div>
@@ -328,17 +337,20 @@ export default function App() {
 
           <form onSubmit={authMode === 'login' ? handleLogin : handleRegister} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-1.5">
                 Username
               </label>
               <div className="relative">
-                <User className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
+                <User className="w-4 h-4 text-zinc-600 absolute left-3.5 top-3" />
                 <input
                   type="text"
                   placeholder="enter username"
                   value={authUsername}
                   onChange={(e) => setAuthUsername(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition-colors"
+                  className="w-full rounded-xl pl-10 pr-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-700 focus:outline-none transition-colors"
+                  style={{background:'#0a0a0b',border:'1px solid rgba(255,255,255,0.07)'}}
+                  onFocus={e => e.target.style.borderColor='rgba(201,161,90,0.5)'}
+                  onBlur={e => e.target.style.borderColor='rgba(255,255,255,0.07)'}
                   required
                 />
               </div>
@@ -346,17 +358,20 @@ export default function App() {
 
             {authMode === 'register' && (
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-1.5">
                   Email Address
                 </label>
                 <div className="relative">
-                  <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
+                  <Mail className="w-4 h-4 text-zinc-600 absolute left-3.5 top-3" />
                   <input
                     type="email"
                     placeholder="user@example.com"
                     value={authEmail}
                     onChange={(e) => setAuthEmail(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full rounded-xl pl-10 pr-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-700 focus:outline-none transition-colors"
+                    style={{background:'#0a0a0b',border:'1px solid rgba(255,255,255,0.07)'}}
+                    onFocus={e => e.target.style.borderColor='rgba(201,161,90,0.5)'}
+                    onBlur={e => e.target.style.borderColor='rgba(255,255,255,0.07)'}
                     required
                   />
                 </div>
@@ -364,17 +379,20 @@ export default function App() {
             )}
 
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-1.5">
                 Password
               </label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
+                <Lock className="w-4 h-4 text-zinc-600 absolute left-3.5 top-3" />
                 <input
                   type="password"
                   placeholder="••••••••"
                   value={authPassword}
                   onChange={(e) => setAuthPassword(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition-colors"
+                  className="w-full rounded-xl pl-10 pr-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-700 focus:outline-none transition-colors"
+                  style={{background:'#0a0a0b',border:'1px solid rgba(255,255,255,0.07)'}}
+                  onFocus={e => e.target.style.borderColor='rgba(201,161,90,0.5)'}
+                  onBlur={e => e.target.style.borderColor='rgba(255,255,255,0.07)'}
                   required
                 />
               </div>
@@ -383,7 +401,7 @@ export default function App() {
             <button
               type="submit"
               disabled={authLoading}
-              className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-xl shadow-lg shadow-indigo-600/20 transition-all flex items-center justify-center gap-2 mt-6"
+              className="btn-gold w-full py-3 rounded-xl flex items-center justify-center gap-2 mt-2"
             >
               {authLoading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Lock className="w-4 h-4" />}
               {authMode === 'login' ? 'Sign In to Dashboard' : 'Create Account'}
@@ -394,31 +412,32 @@ export default function App() {
     );
   }
 
+
   // Render Authenticated Dashboard
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-8 font-sans">
+    <div className="min-h-screen text-zinc-100 p-4 md:p-8" style={{background:'#0a0a0b'}}>
       <div className="max-w-7xl mx-auto space-y-8">
-        
+
         {/* Header Bar */}
-        <header className="flex flex-col md:flex-row md:items-center md:justify-between pb-6 border-b border-slate-800 gap-4">
+        <header className="flex flex-col md:flex-row md:items-center md:justify-between pb-6 gap-4" style={{borderBottom:'1px solid rgba(255,255,255,0.06)'}}>
           <div>
-            <h1 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-emerald-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent">
-              Finance Analytics & JWT Auth
+            <h1 className="text-3xl md:text-4xl font-extrabold bg-clip-text text-transparent" style={{backgroundImage:'linear-gradient(135deg,#c9a15a 0%,#e8c98a 50%,#a07840 100%)'}}>
+              Finance Analytics · ff360 Labs
             </h1>
-            <p className="text-slate-400 text-sm mt-1">
-              Month 2, Week 4 • Protected JWT Endpoints • User: <span className="text-emerald-400 font-semibold">{currentUser.username}</span>
+            <p className="text-zinc-500 text-sm mt-1">
+              Month 2, Week 4 · Protected JWT · User: <span className="text-gold font-semibold">{currentUser.username}</span>
             </p>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-slate-300">
-              <User className="w-3.5 h-3.5 text-indigo-400" />
+            <div className="flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs text-zinc-400" style={{background:'#17171a',border:'1px solid rgba(255,255,255,0.06)'}}>
+              <User className="w-3.5 h-3.5 text-gold" />
               <span>{currentUser.email}</span>
             </div>
 
             <button
               onClick={handleLogout}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 rounded-xl text-xs font-semibold transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 text-rose-400 rounded-xl text-xs font-semibold transition-all"
               title="Sign Out"
             >
               <LogOut className="w-3.5 h-3.5" />
@@ -429,72 +448,72 @@ export default function App() {
 
         {/* Metric Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+          <div className="card-glass rounded-2xl p-6 relative overflow-hidden">
             <div className="flex items-center justify-between">
-              <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Total Balance</span>
-              <div className="p-2 bg-indigo-500/10 rounded-xl text-indigo-400 border border-indigo-500/20">
-                <Wallet className="w-5 h-5" />
+              <span className="text-zinc-500 text-xs font-semibold uppercase tracking-widest">Total Balance</span>
+              <div className="p-2 rounded-xl" style={{background:'rgba(201,161,90,0.1)',border:'1px solid rgba(201,161,90,0.2)'}}>
+                <Wallet className="w-5 h-5 text-gold" />
               </div>
             </div>
             <div className={`text-3xl font-extrabold mt-3 ${balance >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
               ${balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </div>
-            <div className="text-xs text-slate-500 mt-2">Net user funds</div>
+            <div className="text-xs text-zinc-600 mt-2">Net user funds</div>
           </div>
 
-          <div className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+          <div className="card-glass rounded-2xl p-6 relative overflow-hidden">
             <div className="flex items-center justify-between">
-              <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Total Income</span>
-              <div className="p-2 bg-emerald-500/10 rounded-xl text-emerald-400 border border-emerald-500/20">
+              <span className="text-zinc-500 text-xs font-semibold uppercase tracking-widest">Total Income</span>
+              <div className="p-2 bg-emerald-500/10 rounded-xl text-emerald-400 border border-emerald-500/15">
                 <TrendingUp className="w-5 h-5" />
               </div>
             </div>
             <div className="text-3xl font-extrabold mt-3 text-emerald-400">
               +${totalIncome.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </div>
-            <div className="text-xs text-slate-500 mt-2">Gross credited revenue</div>
+            <div className="text-xs text-zinc-600 mt-2">Gross credited revenue</div>
           </div>
 
-          <div className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+          <div className="card-glass rounded-2xl p-6 relative overflow-hidden">
             <div className="flex items-center justify-between">
-              <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Total Expenses</span>
-              <div className="p-2 bg-rose-500/10 rounded-xl text-rose-400 border border-rose-500/20">
+              <span className="text-zinc-500 text-xs font-semibold uppercase tracking-widest">Total Expenses</span>
+              <div className="p-2 bg-rose-500/10 rounded-xl text-rose-400 border border-rose-500/15">
                 <TrendingDown className="w-5 h-5" />
               </div>
             </div>
             <div className="text-3xl font-extrabold mt-3 text-rose-400">
               -${totalExpense.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </div>
-            <div className="text-xs text-slate-500 mt-2">Gross debited outgoing</div>
+            <div className="text-xs text-zinc-600 mt-2">Gross debited outgoing</div>
           </div>
 
-          <div className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+          <div className="card-glass rounded-2xl p-6 relative overflow-hidden">
             <div className="flex items-center justify-between">
-              <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Savings Rate</span>
-              <div className="p-2 bg-teal-500/10 rounded-xl text-teal-400 border border-teal-500/20">
+              <span className="text-zinc-500 text-xs font-semibold uppercase tracking-widest">Savings Rate</span>
+              <div className="p-2 bg-teal-500/10 rounded-xl text-teal-400 border border-teal-500/15">
                 <Percent className="w-5 h-5" />
               </div>
             </div>
             <div className={`text-3xl font-extrabold mt-3 ${Number(savingsRate) >= 20 ? 'text-teal-400' : Number(savingsRate) >= 0 ? 'text-amber-400' : 'text-rose-400'}`}>
               {savingsRate}%
             </div>
-            <div className="text-xs text-slate-500 mt-2">Percentage saved</div>
+            <div className="text-xs text-zinc-600 mt-2">Percentage saved</div>
           </div>
         </div>
 
         {/* Analytics Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+          <div className="card-glass rounded-2xl p-6 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-slate-100 flex items-center gap-2">
-                  <PieChartIcon className="w-5 h-5 text-indigo-400" />
+                <h3 className="text-base font-bold text-zinc-100 flex items-center gap-2">
+                  <PieChartIcon className="w-5 h-5 text-gold" />
                   Expense Breakdown by Category
                 </h3>
               </div>
 
               {categoryExpenseData.length === 0 ? (
-                <div className="h-64 flex items-center justify-center text-slate-500 border border-dashed border-slate-800 rounded-xl">
+                <div className="h-64 flex items-center justify-center text-zinc-600 rounded-xl" style={{border:'1px dashed rgba(255,255,255,0.07)'}}>
                   No expense data to display. Add expenses to render chart!
                 </div>
               ) : (
@@ -511,19 +530,19 @@ export default function App() {
                         dataKey="value"
                       >
                         {categoryExpenseData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} stroke="#0f172a" strokeWidth={2} />
+                          <Cell key={`cell-${index}`} fill={entry.color} stroke="#0a0a0b" strokeWidth={2} />
                         ))}
                       </Pie>
-                      <Tooltip 
-                        contentStyle={{ 
-                          backgroundColor: '#0f172a', 
-                          borderColor: '#334155', 
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: '#17171a',
+                          borderColor: 'rgba(201,161,90,0.2)',
                           borderRadius: '12px',
-                          color: '#f8fafc' 
+                          color: '#f1f1f1'
                         }}
                         formatter={(value) => [`$${Number(value).toFixed(2)}`, 'Expense']}
                       />
-                      <Legend layout="horizontal" verticalAlign="bottom" align="center" wrapperStyle={{ paddingTop: '16px', fontSize: '12px', color: '#94a3b8' }} />
+                      <Legend layout="horizontal" verticalAlign="bottom" align="center" wrapperStyle={{ paddingTop: '16px', fontSize: '12px', color: '#71717a' }} />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
@@ -531,10 +550,10 @@ export default function App() {
             </div>
           </div>
 
-          <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+          <div className="card-glass rounded-2xl p-6 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-slate-100 flex items-center gap-2">
+                <h3 className="text-base font-bold text-zinc-100 flex items-center gap-2">
                   <BarChart3 className="w-5 h-5 text-emerald-400" />
                   Income vs. Expenses Overview
                 </h3>
@@ -543,19 +562,19 @@ export default function App() {
               <div className="h-72 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={incomeVsExpenseData} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                    <XAxis dataKey="name" stroke="#64748b" tick={{ fill: '#94a3b8' }} />
-                    <YAxis stroke="#64748b" tick={{ fill: '#94a3b8' }} tickFormatter={(v) => `$${v}`} />
-                    <Tooltip 
-                      contentStyle={{ 
-                        backgroundColor: '#0f172a', 
-                        borderColor: '#334155', 
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
+                    <XAxis dataKey="name" stroke="#3f3f46" tick={{ fill: '#71717a' }} />
+                    <YAxis stroke="#3f3f46" tick={{ fill: '#71717a' }} tickFormatter={(v) => `$${v}`} />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: '#17171a',
+                        borderColor: 'rgba(201,161,90,0.2)',
                         borderRadius: '12px',
-                        color: '#f8fafc' 
+                        color: '#f1f1f1'
                       }}
                       formatter={(val) => [`$${Number(val).toFixed(2)}`]}
                     />
-                    <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />
+                    <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px', color: '#71717a' }} />
                     <Bar dataKey="Income" fill="#10B981" radius={[8, 8, 0, 0]} maxBarSize={60} />
                     <Bar dataKey="Expense" fill="#F43F5E" radius={[8, 8, 0, 0]} maxBarSize={60} />
                   </BarChart>
@@ -567,15 +586,15 @@ export default function App() {
 
         {/* Transaction Form & List */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 shadow-xl h-fit">
-            <h3 className="text-xl font-bold text-slate-100 mb-4 flex items-center gap-2">
-              <PlusCircle className="w-5 h-5 text-indigo-400" />
+          <div className="card-glass rounded-2xl p-6 h-fit">
+            <h3 className="text-base font-bold text-zinc-100 mb-5 flex items-center gap-2">
+              <PlusCircle className="w-5 h-5 text-gold" />
               Add Record
             </h3>
 
             <form onSubmit={handleAddTransaction} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-1.5">
                   Title
                 </label>
                 <input
@@ -583,37 +602,44 @@ export default function App() {
                   placeholder="e.g. Paycheck, Groceries"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition-colors"
+                  className="w-full rounded-xl px-4 py-2.5 text-zinc-100 placeholder-zinc-700 focus:outline-none transition-colors"
+                  style={{background:'#0a0a0b',border:'1px solid rgba(255,255,255,0.07)'}}
+                  onFocus={e => e.target.style.borderColor='rgba(201,161,90,0.5)'}
+                  onBlur={e => e.target.style.borderColor='rgba(255,255,255,0.07)'}
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-1.5">
                   Amount ($)
                 </label>
                 <div className="relative">
-                  <DollarSign className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
+                  <DollarSign className="w-4 h-4 text-zinc-600 absolute left-3.5 top-3" />
                   <input
                     type="number"
                     step="0.01"
                     placeholder="0.00"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full rounded-xl pl-10 pr-4 py-2.5 text-zinc-100 placeholder-zinc-700 focus:outline-none transition-colors"
+                    style={{background:'#0a0a0b',border:'1px solid rgba(255,255,255,0.07)'}}
+                    onFocus={e => e.target.style.borderColor='rgba(201,161,90,0.5)'}
+                    onBlur={e => e.target.style.borderColor='rgba(255,255,255,0.07)'}
                     required
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-1.5">
                   Category
                 </label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
+                  className="w-full rounded-xl px-4 py-2.5 text-zinc-100 focus:outline-none transition-colors"
+                  style={{background:'#0a0a0b',border:'1px solid rgba(255,255,255,0.07)'}}
                 >
                   <option value="Food">Food & Dining</option>
                   <option value="Salary">Salary & Income</option>
@@ -626,7 +652,7 @@ export default function App() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-1.5">
                   Type
                 </label>
                 <div className="grid grid-cols-2 gap-3">
@@ -635,9 +661,10 @@ export default function App() {
                     onClick={() => setType('expense')}
                     className={`py-2.5 rounded-xl font-medium text-sm border transition-all ${
                       type === 'expense'
-                        ? 'bg-rose-500/20 text-rose-400 border-rose-500/50'
-                        : 'bg-slate-950 text-slate-400 border-slate-800 hover:border-slate-700'
+                        ? 'bg-rose-500/20 text-rose-400 border-rose-500/30'
+                        : 'text-zinc-500 hover:text-zinc-300'
                     }`}
+                    style={type !== 'expense' ? {background:'#0a0a0b',border:'1px solid rgba(255,255,255,0.07)'} : {}}
                   >
                     Expense
                   </button>
@@ -647,9 +674,10 @@ export default function App() {
                     onClick={() => setType('income')}
                     className={`py-2.5 rounded-xl font-medium text-sm border transition-all ${
                       type === 'income'
-                        ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/50'
-                        : 'bg-slate-950 text-slate-400 border-slate-800 hover:border-slate-700'
+                        ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
+                        : 'text-zinc-500 hover:text-zinc-300'
                     }`}
+                    style={type !== 'income' ? {background:'#0a0a0b',border:'1px solid rgba(255,255,255,0.07)'} : {}}
                   >
                     Income
                   </button>
@@ -659,7 +687,7 @@ export default function App() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-xl shadow-lg shadow-indigo-600/20 transition-all flex items-center justify-center gap-2 mt-4"
+                className="btn-gold w-full py-3 rounded-xl flex items-center justify-center gap-2 mt-4"
               >
                 {isSubmitting ? <RefreshCw className="w-4 h-4 animate-spin" /> : <PlusCircle className="w-4 h-4" />}
                 Save Transaction
@@ -667,20 +695,21 @@ export default function App() {
             </form>
           </div>
 
-          <div className="lg:col-span-2 bg-slate-900/80 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+          <div className="lg:col-span-2 card-glass rounded-2xl p-6 flex flex-col justify-between">
             <div>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-                <h3 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-                  <Tag className="w-5 h-5 text-indigo-400" />
-                  Your Protected Records ({filteredTransactions.length})
+                <h3 className="text-base font-bold text-zinc-100 flex items-center gap-2">
+                  <Tag className="w-5 h-5 text-gold" />
+                  Protected Records ({filteredTransactions.length})
                 </h3>
 
                 <div className="flex items-center gap-2">
-                  <Filter className="w-4 h-4 text-slate-400" />
+                  <Filter className="w-4 h-4 text-zinc-600" />
                   <select
                     value={selectedFilter}
                     onChange={(e) => setSelectedFilter(e.target.value)}
-                    className="bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-indigo-500"
+                    className="rounded-lg px-3 py-1.5 text-xs text-zinc-300 focus:outline-none"
+                    style={{background:'#0a0a0b',border:'1px solid rgba(255,255,255,0.07)'}}
                   >
                     <option value="all">All Records</option>
                     <option value="income">Incomes Only</option>
@@ -696,36 +725,39 @@ export default function App() {
               </div>
 
               {loading ? (
-                <div className="py-16 text-center text-slate-500 flex flex-col items-center gap-2">
-                  <RefreshCw className="w-6 h-6 animate-spin text-indigo-400" />
-                  <span>Loading user transactions...</span>
+                <div className="py-16 text-center text-zinc-600 flex flex-col items-center gap-2">
+                  <RefreshCw className="w-6 h-6 animate-spin text-gold" />
+                  <span>Loading transactions...</span>
                 </div>
               ) : filteredTransactions.length === 0 ? (
-                <div className="py-16 text-center text-slate-500 border border-dashed border-slate-800 rounded-xl">
-                  No records found for your account. Add a new record above!
+                <div className="py-16 text-center text-zinc-600 rounded-xl" style={{border:'1px dashed rgba(255,255,255,0.07)'}}>
+                  No records found. Add a new record above!
                 </div>
               ) : (
-                <div className="space-y-3 max-h-[420px] overflow-y-auto pr-1">
+                <div className="space-y-2.5 max-h-[420px] overflow-y-auto pr-1">
                   {filteredTransactions.map((t) => (
                     <div
                       key={t.id}
-                      className="flex items-center justify-between p-4 bg-slate-950/70 border border-slate-800/80 rounded-xl hover:border-slate-700 transition-colors group"
+                      className="flex items-center justify-between p-4 rounded-xl transition-all group"
+                      style={{background:'rgba(10,10,11,0.6)',border:'1px solid rgba(255,255,255,0.05)'}}
+                      onMouseEnter={e => e.currentTarget.style.borderColor='rgba(201,161,90,0.2)'}
+                      onMouseLeave={e => e.currentTarget.style.borderColor='rgba(255,255,255,0.05)'}
                     >
                       <div className="flex items-center gap-3.5">
                         <div className={`p-2.5 rounded-xl border ${
-                          t.type === 'income' 
-                            ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' 
-                            : 'bg-rose-500/10 text-rose-400 border-rose-500/20'
+                          t.type === 'income'
+                            ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/15'
+                            : 'bg-rose-500/10 text-rose-400 border-rose-500/15'
                         }`}>
                           {t.type === 'income' ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
                         </div>
 
                         <div>
-                          <div className="font-semibold text-slate-100">{t.title}</div>
-                          <div className="text-xs text-slate-400 mt-0.5 flex items-center gap-2">
-                            <span 
+                          <div className="font-semibold text-zinc-100">{t.title}</div>
+                          <div className="text-xs text-zinc-500 mt-0.5 flex items-center gap-2">
+                            <span
                               className="px-2 py-0.5 rounded text-white text-[10px] font-semibold uppercase tracking-wider"
-                              style={{ backgroundColor: CATEGORY_COLORS[t.category] || '#64748B' }}
+                              style={{ backgroundColor: CATEGORY_COLORS[t.category] || '#3f3f46' }}
                             >
                               {t.category}
                             </span>
@@ -741,7 +773,7 @@ export default function App() {
 
                         <button
                           onClick={() => handleDeleteTransaction(t.id)}
-                          className="p-1.5 text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors opacity-80 group-hover:opacity-100"
+                          className="p-1.5 text-zinc-600 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors opacity-60 group-hover:opacity-100"
                           title="Delete Transaction"
                         >
                           <Trash2 className="w-4 h-4" />
