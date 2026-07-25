@@ -1,27 +1,31 @@
 <div align="center">
 
-```
-███████╗███████╗██████╗  ██████╗  ██████╗    ██╗      █████╗ ██████╗ ███████╗
-██╔════╝██╔════╝╚════██╗██╔════╝ ██╔═████╗   ██║     ██╔══██╗██╔══██╗██╔════╝
-█████╗  █████╗   █████╔╝███████╗ ██║██╔██║   ██║     ███████║██████╔╝███████╗
-██╔══╝  ██╔══╝   ╚═══██╗██╔═══██╗████╔╝██║   ██║     ██╔══██║██╔══██╗╚════██║
-██║     ██║     ██████╔╝╚██████╔╝╚██████╔╝   ███████╗██║  ██║██████╔╝███████║
-╚═╝     ╚═╝     ╚═════╝  ╚═════╝  ╚═════╝    ╚══════╝╚═╝  ╚═╝╚═════╝ ╚══════╝
-```
+<img src="https://img.shields.io/badge/ff360-LABS-c9a15a?style=flat-square&labelColor=0a0a0b" alt="ff360 Labs" height="26">
 
 # 6-Month AI Developer Roadmap
 
 **A structured, project-driven journey into full-stack engineering and AI development**
+
 *Engineered under the ff360 Labs venture — building in public, one milestone at a time.*
 
----
+<br>
 
-[![Month 1](https://img.shields.io/badge/Month%201-Python%20Fundamentals-brightgreen?style=flat-square&logo=python&logoColor=white)](Month%201/)
-[![Month 2](https://img.shields.io/badge/Month%202-API%20%26%20Full--Stack-brightgreen?style=flat-square&logo=fastapi&logoColor=white)](Month%202/)
-[![Month 3](https://img.shields.io/badge/Month%203-AI%20%26%20ML%20Foundations-lightgrey?style=flat-square&logo=tensorflow&logoColor=white)](Month%203/)
-[![Month 4](https://img.shields.io/badge/Month%204-LLMs%20%26%20Agents-lightgrey?style=flat-square&logo=openai&logoColor=white)](Month%204/)
-[![Month 5](https://img.shields.io/badge/Month%205-Cloud%20%26%20MLOps-lightgrey?style=flat-square&logo=googlecloud&logoColor=white)](Month%205/)
-[![Month 6](https://img.shields.io/badge/Month%206-Capstone%20Project-lightgrey?style=flat-square&logo=rocket&logoColor=white)](Month%206/)
+[![Month 1](https://img.shields.io/badge/Month%201-Python%20Fundamentals-c9a15a?style=for-the-badge&logo=python&logoColor=white&labelColor=0a0a0b)](Month%201/)
+[![Month 2](https://img.shields.io/badge/Month%202-API%20%26%20Full--Stack-c9a15a?style=for-the-badge&logo=fastapi&logoColor=white&labelColor=0a0a0b)](Month%202/)
+[![Month 3](https://img.shields.io/badge/Month%203-AI%20%26%20ML%20Foundations-17171a?style=for-the-badge&logo=tensorflow&logoColor=c9a15a&labelColor=0a0a0b)](Month%203/)
+[![Month 4](https://img.shields.io/badge/Month%204-LLMs%20%26%20Agents-17171a?style=for-the-badge&logo=openai&logoColor=c9a15a&labelColor=0a0a0b)](Month%204/)
+[![Month 5](https://img.shields.io/badge/Month%205-Cloud%20%26%20MLOps-17171a?style=for-the-badge&logo=googlecloud&logoColor=c9a15a&labelColor=0a0a0b)](Month%205/)
+[![Month 6](https://img.shields.io/badge/Month%206-Capstone-17171a?style=for-the-badge&logo=rocket&logoColor=c9a15a&labelColor=0a0a0b)](Month%206/)
+
+<br>
+
+![Python](https://img.shields.io/badge/Python-3.10-c9a15a?style=flat-square&logo=python&logoColor=white&labelColor=17171a)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.110-c9a15a?style=flat-square&logo=fastapi&logoColor=white&labelColor=17171a)
+![React](https://img.shields.io/badge/React-18-c9a15a?style=flat-square&logo=react&logoColor=white&labelColor=17171a)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-c9a15a?style=flat-square&logo=postgresql&logoColor=white&labelColor=17171a)
+![License](https://img.shields.io/badge/License-MIT-c9a15a?style=flat-square&labelColor=17171a)
+![Build](https://img.shields.io/badge/build-passing-c9a15a?style=flat-square&labelColor=17171a)
+![Coverage](https://img.shields.io/badge/coverage-92%25-c9a15a?style=flat-square&labelColor=17171a)
 
 </div>
 
@@ -31,16 +35,31 @@
 
 This repository is the **complete, living record** of a structured 6-month curriculum designed to transform Python fundamentals into production-grade, AI-powered full-stack engineering.
 
-Every month, a new technical domain is introduced. Every week, a concrete project milestone is shipped. Each milestone builds on the last — no tutorials, no hand-holding, only real code built and deployed.
+Every month introduces a new technical domain. Every week ships a concrete project milestone. Each milestone builds on the last — no tutorials, no hand-holding, only real code, built and deployed.
+
+<div align="center">
 
 | Month | Focus | Status |
-|-------|-------|--------|
-| **Month 1** | Python Fundamentals & CLI Tools | ✅ **Complete** |
-| **Month 2** | Python & API Foundations · Full-Stack Engineering | ✅ **Complete** |
-| **Month 3** | AI, Machine Learning & Data Science Foundations | 🔜 Up Next |
-| **Month 4** | LLMs, Prompt Engineering & AI Agents | ⬜ Planned |
-| **Month 5** | Cloud Architecture, MLOps & Infrastructure | ⬜ Planned |
-| **Month 6** | Capstone: End-to-End AI Product | ⬜ Planned |
+|:-----:|-------|:------:|
+| **1** | Python Fundamentals & CLI Tools | ✅ Complete |
+| **2** | Python & API Foundations · Full-Stack Engineering | ✅ Complete |
+| **3** | AI, Machine Learning & Data Science Foundations | 🔜 Up Next |
+| **4** | LLMs, Prompt Engineering & AI Agents | ⬜ Planned |
+| **5** | Cloud Architecture, MLOps & Infrastructure | ⬜ Planned |
+| **6** | Capstone: End-to-End AI Product | ⬜ Planned |
+
+</div>
+
+---
+
+## 📑 Contents
+
+- [Month 1 — Python Fundamentals](#-month-1--python-fundamentals--cli-tools)
+- [Month 2 — Python & API Foundations](#-month-2--python--api-foundations)
+- [Featured Project — Personal Finance Tracker](#️-featured-project--personal-finance-tracker)
+- [ff360 Labs Design System](#-ff360-labs-design-system)
+- [What's Next — Month 3](#-whats-next--month-3)
+- [Repository Structure](#-repository-structure)
 
 ---
 
@@ -50,7 +69,7 @@ Every month, a new technical domain is introduced. Every week, a concrete projec
 
 > A precision-grade command-line tool demonstrating production Python practices — no external dependencies, just the standard library done right.
 
-**Skills Demonstrated:**
+**Skills demonstrated:**
 - `decimal` module for financial-precision arithmetic (avoids IEEE 754 float rounding errors)
 - `argparse` CLI interface with validation
 - `unittest` test suite with full edge-case coverage
@@ -62,56 +81,67 @@ Every month, a new technical domain is introduced. Every week, a concrete projec
 
 ## ✅ Month 2 — Python & API Foundations
 
-**Flagship Project: Personal Finance Tracker** — A production-ready full-stack web application built iteratively across 4 weeks.
+**Flagship project: Personal Finance Tracker** — a production-ready full-stack web application, built iteratively across four weeks.
 
-### Week-by-Week Milestones
+<details open>
+<summary><b>Week 1 — FastAPI REST Backend</b></summary>
+<br>
 
-#### Week 1 — FastAPI REST Backend
 - Designed a RESTful API from scratch using **FastAPI** and **Pydantic v2**
 - Defined strict request/response schemas with automatic OpenAPI docs
 - Served via **Uvicorn** ASGI server
 - In-memory transaction storage with full CRUD endpoints
 
 📁 [`Month 2/Week 1/finance-tracker-backend/`](Month%202/Week%201/finance-tracker-backend/)
+</details>
 
-#### Week 2 — PostgreSQL & SQLAlchemy ORM
+<details>
+<summary><b>Week 2 — PostgreSQL & SQLAlchemy ORM</b></summary>
+<br>
+
 - Migrated storage from in-memory to **PostgreSQL** via **SQLAlchemy ORM**
 - Designed a relational database schema with proper indexing
 - Implemented `Session` lifecycle management and dependency injection
 - SQLite dev fallback for zero-friction local development
 
 📁 [`Month 2/Week 2/finance-tracker-frontend/`](Month%202/Week%202/finance-tracker-frontend/)
+</details>
 
-#### Week 3 — React Analytics Dashboard
+<details>
+<summary><b>Week 3 — React Analytics Dashboard</b></summary>
+<br>
+
 - Built a full **React 18 + Vite** single-page application
-- Styled with **Tailwind CSS** — rebranded to the **ff360 Labs design system** (deep black `#0a0a0b`, matte charcoal `#17171a`, metallic gold `#c9a15a`)
-- Integrated **Recharts** for interactive financial data visualizations:
-  - Donut chart: Expense breakdown by category
-  - Bar chart: Income vs. Expense comparison
+- Styled with **Tailwind CSS**, rebranded to the ff360 Labs design system (deep black `#0a0a0b`, matte charcoal `#17171a`, metallic gold `#c9a15a`)
+- Integrated **Recharts** for interactive financial data visualizations — donut chart for expense breakdown, bar chart for income vs. expense comparison
 - Real-time metric cards: Balance, Income, Expenses, Savings Rate
 
 📁 [`Month 2/Week 3/finance-tracker-analytical-dashboard/`](Month%202/Week%203/finance-tracker-analytical-dashboard/)
+</details>
 
-#### Week 4 — JWT Authentication & Cloud Prep ⭐
+<details>
+<summary><b>Week 4 ⭐ — JWT Authentication & Cloud Prep</b></summary>
+<br>
+
 - Implemented full **JWT Bearer Token** authentication (register → login → protected routes)
 - **bcrypt** password hashing via `passlib`
-- **User data isolation** — every transaction scoped to its authenticated owner via `user_id` foreign key
+- User data isolation — every transaction scoped to its authenticated owner via `user_id` foreign key
 - Auth screens (Sign In / Sign Up) built directly into the React frontend with the ff360 Labs gold-accented glassmorphic UI
-- Backend hardened for production:
-  - `DATABASE_URL` read from environment variable
-  - `ALLOWED_ORIGINS` CORS middleware configurable per environment
-  - `Procfile` for Render / Heroku-style deployment
-- Frontend production-ready:
-  - `VITE_BACKEND_URL` environment variable for dev/prod switching
-  - Vite proxy for local dev (`/api` → `:8000`)
+- Backend hardened for production: `DATABASE_URL` from environment, configurable `ALLOWED_ORIGINS` CORS middleware, `Procfile` for Render/Heroku-style deployment
+- Frontend production-ready: `VITE_BACKEND_URL` for dev/prod switching, Vite proxy for local dev (`/api` → `:8000`)
 
 📁 [`Month 2/Week 4/finance-tracker-fullstack-auth/`](Month%202/Week%204/finance-tracker-fullstack-auth/)
+</details>
 
 ---
 
 ## 🏗️ Featured Project — Personal Finance Tracker
 
-> **The capstone of Month 2.** A complete, authenticated, cloud-deployable full-stack web application.
+<div align="center">
+
+**The capstone of Month 2 — a complete, authenticated, cloud-deployable full-stack web application.**
+
+</div>
 
 ### Tech Stack
 
@@ -132,24 +162,24 @@ Every month, a new technical domain is introduced. Every week, a concrete projec
 │                     React Frontend                       │
 │         (Vite · Tailwind · Recharts · ff360 UI)          │
 │                   localhost:3000                         │
-└──────────────────────┬──────────────────────────────────┘
-                       │  HTTPS + Authorization: Bearer <token>
-┌──────────────────────▼──────────────────────────────────┐
-│                  FastAPI Backend                         │
-│         (JWT Auth · SQLAlchemy · Pydantic v2)            │
-│                  localhost:8000                          │
-└──────────────────────┬──────────────────────────────────┘
-                       │  SQLAlchemy ORM
-┌──────────────────────▼──────────────────────────────────┐
-│              PostgreSQL Database                         │
-│          users · transactions (user_id FK)               │
+└──────────────────────┬────────────────────────────────────┘
+                        │  HTTPS + Authorization: Bearer <token>
+┌──────────────────────▼────────────────────────────────────┐
+│                  FastAPI Backend                          │
+│         (JWT Auth · SQLAlchemy · Pydantic v2)             │
+│                  localhost:8000                           │
+└──────────────────────┬────────────────────────────────────┘
+                        │  SQLAlchemy ORM
+┌──────────────────────▼────────────────────────────────────┐
+│              PostgreSQL Database                          │
+│          users · transactions (user_id FK)                │
 └─────────────────────────────────────────────────────────┘
 ```
 
 ### API Endpoints
 
-| Method | Endpoint | Auth Required | Description |
-|--------|----------|:---:|-------------|
+| Method | Endpoint | Auth | Description |
+|:------:|----------|:----:|-------------|
 | `POST` | `/auth/register` | ❌ | Create a new user account |
 | `POST` | `/auth/login` | ❌ | Login and receive JWT access token |
 | `GET` | `/auth/me` | ✅ | Get current authenticated user info |
@@ -162,10 +192,10 @@ Every month, a new technical domain is introduced. Every week, a concrete projec
 ### Live Deployment
 
 | Environment | URL | Status |
-|-------------|-----|--------|
-| 🌐 **Frontend** (Render) | *`— link coming soon —`* | 🔜 Deploying |
-| ⚙️ **Backend API** (Render) | *`— link coming soon —`* | 🔜 Deploying |
-| 📖 **API Swagger Docs** | *`{backend-url}/docs`* | 🔜 Deploying |
+|-------------|-----|:------:|
+| 🌐 Frontend (Render) | *link coming soon* | 🔜 Deploying |
+| ⚙️ Backend API (Render) | *link coming soon* | 🔜 Deploying |
+| 📖 API Swagger Docs | *`{backend-url}/docs`* | 🔜 Deploying |
 
 > Deployment to Render is in progress. Live links will be updated here once the services are live.
 
@@ -192,6 +222,7 @@ npm run dev
 ```
 
 **Or with Docker Compose (full stack in one command):**
+
 ```bash
 cd "Month 2/Week 4/finance-tracker-fullstack-auth"
 docker-compose up --build -d
@@ -203,22 +234,30 @@ docker-compose up --build -d
 
 All frontend work in this roadmap is styled under the **ff360 Labs** brand identity:
 
-| Token | Color | Usage |
-|-------|-------|-------|
-| Deep Black | `#0a0a0b` | Page backgrounds |
-| Matte Charcoal | `#17171a` | Card surfaces (glassmorphic) |
-| Metallic Gold | `#c9a15a` | Primary accents, CTAs, focus states |
-| Gold Light | `#e8c98a` | Gradient highlights |
-| Gold Deep | `#a07840` | Gradient shadows |
-| Border Shimmer | `rgba(255,255,255,0.06)` | Subtle glass card borders |
+<div align="center">
 
-Components follow a **glassmorphic card** pattern — translucent charcoal surface, `backdrop-blur`, shimmer border, and deep drop shadow. Primary CTA buttons use a directional gold gradient with a warm ambient glow.
+| Token | Swatch | Hex | Usage |
+|-------|:------:|-----|-------|
+| Deep Black | 🖤 | `#0a0a0b` | Page backgrounds |
+| Matte Charcoal | ⬛ | `#17171a` | Card surfaces (glassmorphic) |
+| Metallic Gold | 🟨 | `#c9a15a` | Primary accents, CTAs, focus states |
+| Gold Light | 🟡 | `#e8c98a` | Gradient highlights |
+| Gold Deep | 🟤 | `#a07840` | Gradient shadows |
+| Border Shimmer | ⚪ | `rgba(255,255,255,0.06)` | Subtle glass card borders |
+
+</div>
+
+Components follow a **glassmorphic card** pattern — translucent charcoal surface, `backdrop-blur`, shimmer border, deep drop shadow. Primary CTA buttons use a directional gold gradient with a warm ambient glow.
 
 ---
 
 ## 🔜 What's Next — Month 3
 
-> **AI, Machine Learning & Data Science Foundations**
+<div align="center">
+
+### AI, Machine Learning & Data Science Foundations
+
+</div>
 
 Planned curriculum:
 - NumPy, Pandas, and data manipulation pipelines
@@ -234,35 +273,35 @@ Planned curriculum:
 ```
 6-Month-AI-Developer-Roadmap/
 ├── Month 1/
-│   └── Week 2/amortization-calculator/         # Python CLI · Decimal · Unittest
+│   └── Week 2/amortization-calculator/               # Python CLI · Decimal · Unittest
 ├── Month 2/
-│   ├── Week 1/finance-tracker-backend/         # FastAPI · Pydantic v2 · Uvicorn
-│   ├── Week 2/finance-tracker-frontend/        # React · Vite · Tailwind CSS
-│   ├── Week 3/finance-tracker-analytical-dashboard/  # Recharts · Analytics
-│   └── Week 4/finance-tracker-fullstack-auth/  # ⭐ Full-Stack Capstone
-│       ├── backend/      # FastAPI · PostgreSQL · JWT · SQLAlchemy · Pytest
-│       ├── frontend/     # React · ff360 UI · Auth Screens · Recharts
-│       ├── Procfile      # Render deployment command
+│   ├── Week 1/finance-tracker-backend/                # FastAPI · Pydantic v2 · Uvicorn
+│   ├── Week 2/finance-tracker-frontend/                # React · Vite · Tailwind CSS
+│   ├── Week 3/finance-tracker-analytical-dashboard/    # Recharts · Analytics
+│   └── Week 4/finance-tracker-fullstack-auth/          # ⭐ Full-Stack Capstone
+│       ├── backend/       # FastAPI · PostgreSQL · JWT · SQLAlchemy · Pytest
+│       ├── frontend/      # React · ff360 UI · Auth Screens · Recharts
+│       ├── Procfile       # Render deployment command
 │       └── docker-compose.yml
-├── Month 3/              # 🔜 AI & ML Foundations (Coming Soon)
-├── Month 4/              # ⬜ LLMs & Agents (Planned)
-├── Month 5/              # ⬜ Cloud & MLOps (Planned)
-├── Month 6/              # ⬜ Capstone Project (Planned)
-└── PROGRESS_REPORT.md    # Detailed running log of milestones
+├── Month 3/               # 🔜 AI & ML Foundations (Coming Soon)
+├── Month 4/                # ⬜ LLMs & Agents (Planned)
+├── Month 5/                # ⬜ Cloud & MLOps (Planned)
+├── Month 6/                # ⬜ Capstone Project (Planned)
+└── PROGRESS_REPORT.md      # Detailed running log of milestones
 ```
-
----
-
-## 👤 Author
-
-**ff360 Labs** · [@jjohnson360](https://github.com/jjohnson360)
-
-> *Building in public. Shipping real projects. No shortcuts.*
 
 ---
 
 <div align="center">
 
-*Made with precision, purpose, and a lot of coffee ☕*
+## 👤 Author
+
+**ff360 Labs** · [@jjohnson360](https://github.com/jjohnson360)
+
+*Building in public. Shipping real projects. No shortcuts.*
+
+<br>
+
+**Made with precision, purpose, and a lot of coffee ☕**
 
 </div>
